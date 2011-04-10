@@ -101,6 +101,17 @@ public class nICs extends JavaPlugin {
 		}
 		return signBlock.getWorld().getBlockAt(loc);
 	}
+	public Block getBlockBehindOfSign(Sign signBlock){
+		int direction = getSignDirection(signBlock);
+		Location loc = signBlock.getBlock().getLocation();
+		switch (direction){
+		case 3: loc.setZ(loc.getZ() + 1); break;
+		case 1: loc.setZ(loc.getZ() - 1); break;
+		case 4: loc.setX(loc.getX() + 1); break;
+		case 2: loc.setX(loc.getX() - 1); break;
+		}
+		return signBlock.getWorld().getBlockAt(loc);
+	}
     private void setupPermissions() {
         Plugin test = getServer().getPluginManager().getPlugin("Permissions");
 
