@@ -12,4 +12,9 @@ public class MC1236 implements IC {
 	public String getName(){
 		return "BROADCAST";
 	}
+	
+	public String canPlace(String[] lines){
+		if (lines[2].equals("")) return "Line 3 must contain a string!";
+		return "";
+	}
 }

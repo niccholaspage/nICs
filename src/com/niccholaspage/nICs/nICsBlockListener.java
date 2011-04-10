@@ -22,9 +22,7 @@ public class nICsBlockListener extends BlockListener {
 		World world = event.getBlock().getWorld();
 		if (!(plugin.ics.containsKey(text))) return;
 		Boolean success = plugin.ics.get(text).run(plugin, power, world, sign);
-		if (!(success == null)){
-			
-		}
+		if (!(success == null)) plugin.setLever(sign, success);
 	}
 	@Override
 	public void onSignChange(SignChangeEvent event){
@@ -41,6 +39,12 @@ public class nICsBlockListener extends BlockListener {
 				event.setCancelled(true);
 				return;
 			}
+		}
+		String canplace = plugin.ics.get(text).canPlace(event.getLines()); 
+		if (canplace.equals("") == false){
+			event.getPlayer().sendMessage(ChatColor.RED + canplace);
+			event.setCancelled(true);
+			return;
 		}
 		event.setLine(0, plugin.ics.get(text).getName());
 		event.getPlayer().sendMessage(ChatColor.GREEN + plugin.ics.get(text).getName() + " has been created!");

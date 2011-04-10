@@ -35,4 +35,7 @@ public class MC1239 implements IC {
 	public Sign getSign(){
 		return sign;
 	}
+	public String canPlace(String[] lines){
+		return "";
+	}
 }

@@ -14,7 +14,18 @@ public class MC1238 implements IC {
 
 	@Override
 	public String getName() {
-		return "AUTOPOWER";
+		return "ON REPEATER";
 	}
-
+    public boolean isInt(String i){
+    	try {
+    		Integer.parseInt(i);
+    		return true;
+    	} catch(NumberFormatException nfe){
+    		return false;
+    	}
+    }
+	public String canPlace(String[] lines){
+		if (!(isInt(lines[2]))) return "The third line must be an integer!";
+		return "";
+	}
 }

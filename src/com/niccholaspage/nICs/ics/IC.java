@@ -9,4 +9,6 @@ public interface IC {
 	public abstract Boolean run(nICs plugin, boolean power, World world, Sign sign);
 
 	public abstract String getName();
+	
+	public abstract String canPlace(String[] lines);
 }

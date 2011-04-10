@@ -14,7 +14,13 @@ public class MC1237 implements IC {
 		}
 		return null;
 	}
+	
 	public String getName(){
 		return "WORLD BROADCAST";
+	}
+	
+	public String canPlace(String[] lines){
+		if (lines[2].equals("")) return "Line 3 must contain a string!";
+		return "";
 	}
 }

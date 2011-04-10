@@ -2,10 +2,14 @@ package com.niccholaspage.nICs;
 
 import java.util.HashMap;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.event.Event;
 
 import com.niccholaspage.nICs.ics.*;
@@ -43,8 +47,46 @@ public class nICs extends JavaPlugin {
     	ics.put("MC1235", new MC1235());
     	ics.put("MC1236", new MC1236());
     	ics.put("MC1237", new MC1237());
+    	ics.put("MC1238", new MC1238());
     	ics.put("MC1239", new MC1239());
     }
+	public int getSignDirection(Sign signBlock){
+		if(signBlock.getRawData() == 0x2){
+    		return 3;//EAST
+       	}
+    	else if(signBlock.getRawData() == 0x3){
+    		
+    		return 1;//WEST
+    	}
+    	else if(signBlock.getRawData() == 0x4){
+    		return 4;//NORTH
+    	}
+    	else if(signBlock.getRawData() == 0x5){
+    		return 2;//SOUTH    	
+    	}   
+		return -1;
+	}
+	public void setLever(Sign signBlock, boolean on){
+		Location loc = signBlock.getBlock().getLocation();
+		int direction = getSignDirection(signBlock);
+		switch (direction){
+		case 3: loc.setZ(loc.getZ() + 2); break;
+		case 1: loc.setZ(loc.getZ() - 2); break;
+		case 4: loc.setX(loc.getX() + 2); break;
+		case 2: loc.setX(loc.getX() - 2); break;
+		}
+		Block lever = signBlock.getWorld().getBlockAt(loc);
+		if (!(lever.getType() == Material.LEVER)) return;
+		int data = lever.getData();
+    	if(on){           	
+        	if ((data & 0x8) != 8){
+        		data |= 8;
+        	}
+    	}else if ((data & 0x8) == 8){
+    		data ^= 8;		    		
+    	}
+    	lever.setData((byte)data);
+	}
     private void setupPermissions() {
         Plugin test = getServer().getPluginManager().getPlugin("Permissions");
 
