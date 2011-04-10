@@ -9,7 +9,7 @@ public class MC1238 implements IC {
 
 	@Override
 	public Boolean run(nICs plugin, boolean power, World world, Sign sign) {
-		return null;
+		if (power) return false; else return true;
 	}
 
 	@Override

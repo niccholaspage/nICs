@@ -66,26 +66,40 @@ public class nICs extends JavaPlugin {
     	}   
 		return -1;
 	}
-	public void setLever(Sign signBlock, boolean on){
-		Location loc = signBlock.getBlock().getLocation();
+	public void setLever(Sign signBlock, boolean on)
+	{
+			
+			Location loc = signBlock.getBlock().getLocation();
+			int direction = getSignDirection(signBlock);
+			switch (direction){
+			case 3: loc.setZ(loc.getZ() + 2); break;
+			case 1: loc.setZ(loc.getZ() - 2); break;
+			case 4: loc.setX(loc.getX() + 2); break;
+			case 2: loc.setX(loc.getX() - 2); break;
+			}
+			Block lever = signBlock.getWorld().getBlockAt(loc);
+	    	if(lever.getType().equals(Material.LEVER)){
+		    	int data = lever.getData();
+		    	if(on){          	
+	            	if ((data & 0x8) != 8){
+	            		data |= 8;
+	            	}
+		    	}else if ((data & 0x8) == 8){
+		    		data ^= 8;		    		
+		    	}
+		    	lever.setData((byte)data);
+			}
+	}
+	public Block getBlockFrontOfSign(Sign signBlock){
 		int direction = getSignDirection(signBlock);
+		Location loc = signBlock.getBlock().getLocation();
 		switch (direction){
-		case 3: loc.setZ(loc.getZ() + 2); break;
-		case 1: loc.setZ(loc.getZ() - 2); break;
-		case 4: loc.setX(loc.getX() + 2); break;
-		case 2: loc.setX(loc.getX() - 2); break;
+		case 3: loc.setZ(loc.getZ() - 1); break;
+		case 1: loc.setZ(loc.getZ() + 1); break;
+		case 4: loc.setX(loc.getX() - 1); break;
+		case 2: loc.setX(loc.getX() + 1); break;
 		}
-		Block lever = signBlock.getWorld().getBlockAt(loc);
-		if (!(lever.getType() == Material.LEVER)) return;
-		int data = lever.getData();
-    	if(on){           	
-        	if ((data & 0x8) != 8){
-        		data |= 8;
-        	}
-    	}else if ((data & 0x8) == 8){
-    		data ^= 8;		    		
-    	}
-    	lever.setData((byte)data);
+		return signBlock.getWorld().getBlockAt(loc);
 	}
     private void setupPermissions() {
         Plugin test = getServer().getPluginManager().getPlugin("Permissions");
