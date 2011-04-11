@@ -49,6 +49,7 @@ public class nICs extends JavaPlugin {
     	ics.put("MC1237", new MC1237());
     	ics.put("MC1238", new MC1238());
     	ics.put("MC1239", new MC1239());
+    	ics.put("N1000", new N1000());
     }
 	public int getSignDirection(Sign signBlock){
 		if(signBlock.getRawData() == 0x2){
@@ -112,6 +113,14 @@ public class nICs extends JavaPlugin {
 		}
 		return signBlock.getWorld().getBlockAt(loc);
 	}
+    public boolean isInt(String i){
+    	try {
+    		Integer.parseInt(i);
+    		return true;
+    	} catch(NumberFormatException nfe){
+    		return false;
+    	}
+    }
     private void setupPermissions() {
         Plugin test = getServer().getPluginManager().getPlugin("Permissions");
 

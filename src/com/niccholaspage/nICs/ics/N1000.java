@@ -1,0 +1,41 @@
+package com.niccholaspage.nICs.ics;
+
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.block.Sign;
+import org.bukkit.entity.CreatureType;
+
+import com.niccholaspage.nICs.nICs;
+
+public class N1000 implements IC {
+
+	@Override
+	public Boolean run(nICs plugin, boolean power, World world, Sign sign) {
+		if (power == false) return null;
+		Location block = plugin.getBlockBehindOfSign(sign).getLocation();
+		block.setY(block.getY() + 1);
+		int times = 1;
+		if (plugin.isInt(sign.getLine(3))) times = Integer.parseInt(sign.getLine(3));
+		for (int i = 0; i < times; i++){
+		world.spawnCreature(block, CreatureType.fromName(sign.getLine(2)));
+		}
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "SPAWNMOB";
+	}
+
+	@Override
+	public String canPlace(String[] lines) {
+		Boolean pass = false;
+		for (int i = 0; i < CreatureType.values().length; i++){
+			if (!(CreatureType.fromName(lines[2]) == null)){
+				pass = true;
+			}
+		}
+		if (pass) return ""; else return "Line 3 must be a mob name!";
+	}
+
+}
