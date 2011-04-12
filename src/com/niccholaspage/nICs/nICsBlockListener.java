@@ -18,6 +18,7 @@ public class nICsBlockListener extends BlockListener {
 		if (!(event.getBlock().getState() instanceof Sign)) return;
 		Sign sign = (Sign)event.getBlock().getState();
 		if (!(plugin.getBlockFrontOfSign(sign).getType().equals(Material.REDSTONE_WIRE))) return;
+		if (!(plugin.getBlockFrontOfSign(sign).getData() > 0x0)) return;
 		String text = sign.getLine(1).replace("[", "").replace("]", "").toUpperCase();
 		Boolean power = (event.getNewCurrent() > 1);
 		World world = event.getBlock().getWorld();
