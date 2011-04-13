@@ -18,6 +18,7 @@ public class nICsBlockListener extends BlockListener {
 		Sign sign = (Sign)event.getBlock().getState();
 		if (!(plugin.getBlockFrontOfSign(sign).getType().equals(Material.REDSTONE_WIRE))) return;
 		if (!(plugin.getBlockFrontOfSign(sign).getData() > 0x0)) return;
+		if (event.getOldCurrent() == event.getNewCurrent())	return;
 		String text = sign.getLine(1).replace("[", "").replace("]", "").toUpperCase();
 		if (!(plugin.ics.containsKey(text))) return;
 		Boolean success = plugin.ics.get(text).run(plugin, event);
