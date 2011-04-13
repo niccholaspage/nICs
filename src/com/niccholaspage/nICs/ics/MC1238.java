@@ -1,16 +1,17 @@
 package com.niccholaspage.nICs.ics;
 
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.niccholaspage.nICs.nICs;
 
 public class MC1238 implements IC {
-	public boolean power;
 	@Override
-	public Boolean run(nICs plugin, boolean power, World world, Sign sign) {
+	public Boolean run(nICs plugin, BlockRedstoneEvent event) {
+		boolean power = (event.getNewCurrent() > 0);
+		Sign sign = (Sign)event.getBlock().getState();
 		if (power == false) return null;
 		Block block = plugin.getBlockBehindOfSign(sign);
 		Block above = sign.getWorld().getBlockAt(block.getX(), block.getY() + 1, block.getZ());

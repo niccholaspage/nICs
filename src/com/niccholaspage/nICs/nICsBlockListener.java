@@ -2,7 +2,6 @@ package com.niccholaspage.nICs;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Sign;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockRedstoneEvent;
@@ -20,10 +19,8 @@ public class nICsBlockListener extends BlockListener {
 		if (!(plugin.getBlockFrontOfSign(sign).getType().equals(Material.REDSTONE_WIRE))) return;
 		if (!(plugin.getBlockFrontOfSign(sign).getData() > 0x0)) return;
 		String text = sign.getLine(1).replace("[", "").replace("]", "").toUpperCase();
-		Boolean power = (event.getNewCurrent() > 1);
-		World world = event.getBlock().getWorld();
 		if (!(plugin.ics.containsKey(text))) return;
-		Boolean success = plugin.ics.get(text).run(plugin, power, world, sign);
+		Boolean success = plugin.ics.get(text).run(plugin, event);
 		if (!(success == null)) plugin.setLever(sign, success);
 	}
 	@Override

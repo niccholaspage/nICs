@@ -4,13 +4,17 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.niccholaspage.nICs.nICs;
 
 public class N1000 implements IC {
 
 	@Override
-	public Boolean run(nICs plugin, boolean power, World world, Sign sign) {
+	public Boolean run(nICs plugin, BlockRedstoneEvent event) {
+		boolean power = (event.getNewCurrent() > 0);
+		Sign sign = (Sign)event.getBlock().getState();
+		World world = event.getBlock().getWorld();
 		if (power == false) return null;
 		Location block = plugin.getBlockBehindOfSign(sign).getLocation();
 		block.setY(block.getY() + 1);

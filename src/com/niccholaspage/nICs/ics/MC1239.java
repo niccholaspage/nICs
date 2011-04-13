@@ -1,15 +1,16 @@
 package com.niccholaspage.nICs.ics;
 
-import org.bukkit.World;
 import org.bukkit.block.Sign;
+import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.niccholaspage.nICs.nICs;
 
 public class MC1239 implements IC {
 	public Sign sign;
-	public Boolean run(nICs plugin, boolean power, World world, Sign sign) {
+	public Boolean run(nICs plugin, BlockRedstoneEvent event) {
+		boolean power = (event.getNewCurrent() > 0);
 		if (power){
-			this.sign = sign;
+			this.sign = (Sign)event.getBlock().getState();
 			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
 				public void run(){
 					Sign sign = getSign();

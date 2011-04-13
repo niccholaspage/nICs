@@ -128,7 +128,7 @@ public class nICs extends JavaPlugin {
           if (test != null) {
             permissions = ((Permissions)test).getHandler();
           } else {
-            System.out.println("Permission system not enabled. ICs will work for everyone.");
+            System.out.println("No permissions system was found. ICs can be built by everyone.");
           }
       }
 }
