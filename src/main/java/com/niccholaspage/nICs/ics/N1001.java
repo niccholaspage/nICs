@@ -1,6 +1,5 @@
 package com.niccholaspage.nICs.ics;
 
-import org.bukkit.World;
 import org.bukkit.block.Sign;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
@@ -11,11 +10,10 @@ public class N1001 implements IC {
 	@Override
 	public Boolean run(nICs plugin, BlockRedstoneEvent event) {
 		Sign sign = (Sign)event.getBlock().getState();
-		World world = sign.getWorld();
 		Boolean power = (event.getNewCurrent() > 0);
 		if (power){
 			if (sign.getLine(2).equalsIgnoreCase("rain")){
-				sign.getBlock().
+				
 			}else if (sign.getLine(2).equalsIgnoreCase("snow")){
 				
 			}

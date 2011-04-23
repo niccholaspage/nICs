@@ -2,6 +2,7 @@ package com.niccholaspage.nICs.ics;
 
 import org.bukkit.World;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
 import com.niccholaspage.nICs.nICs;
@@ -12,8 +13,9 @@ public class MC1237 implements IC {
 		boolean power = (event.getNewCurrent() > 0);
 		World world = event.getBlock().getWorld();
 		if (power == true){
-			for (int i = 0; i < world.getPlayers().size(); i++){
-				world.getPlayers().get(i).sendMessage((sign.getLine(2) + sign.getLine(3)).replace("&", "¤"));
+			for (int i = 0; i < world.getLivingEntities().size(); i++){
+				if (world.getLivingEntities().get(i) instanceof Player)
+					((Player)world.getLivingEntities().get(i)).sendMessage((sign.getLine(2) + sign.getLine(3)).replace("&", "¤"));
 			}
 		}
 		return null;
