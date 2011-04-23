@@ -1,6 +1,8 @@
 package com.niccholaspage.nICs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,6 +22,8 @@ public class nICs extends JavaPlugin {
 	private final nICsBlockListener blockListener = new nICsBlockListener(this);
 	//Create IC hashmap :)
 	public final HashMap<String, IC> ics = new HashMap<String, IC>();
+	//Create hashmap to stop duplicate redstone power events
+	public final List<Block> powers = new ArrayList<Block>();
 	//Perma
 	public PermissionHandler permissions;
     @Override

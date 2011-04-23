@@ -20,6 +20,12 @@ public class nICsBlockListener extends BlockListener {
 		if (!(plugin.getBlockFrontOfSign(sign).getData() > 0x0)) return;
 		String text = sign.getLine(1).replace("[", "").replace("]", "").toUpperCase();
 		if (!(plugin.ics.containsKey(text))) return;
+		if (plugin.powers.contains(event.getBlock())){
+			plugin.powers.remove(event.getBlock());
+			return;
+		}else {
+			plugin.powers.add(event.getBlock());
+		}
 		Boolean success = plugin.ics.get(text).run(plugin, event);
 		if (!(success == null)) plugin.setLever(sign, success);
 	}
