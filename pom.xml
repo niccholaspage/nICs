@@ -5,6 +5,28 @@
   <version>0.1-SNAPSHOT</version>
   <name>nICs</name>
   <url>https://github.com/niccholaspage/nICs</url>
+  <repositories>
+  		<repository>
+			<id>bukkit-repo</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<url>http://artifacts.lukegb.com/artifactory/repo/</url>
+		</repository>
+		<repository>
+			<id>nexisonline-repo</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<url>http://ci.nexisonline.net:8080/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
   <issueManagement>
   	<system>GitHub</system>
   	<url>https://github.com/niccholaspage/nICs/issues</url>
