@@ -33,7 +33,7 @@ public class nICsBlockListener extends BlockListener {
 			return;
 		}
 		if (!(plugin.permissions == null)){
-			if (!(plugin.permissions.has(event.getPlayer(), "nICs." + text.toLowerCase()))){
+			if (!(plugin.permissions.has(event.getPlayer(), "nICs.ics." + text.toLowerCase()))){
 				event.getPlayer().sendMessage(ChatColor.RED + "You cannot create the IC " + text +"!");
 				event.setCancelled(true);
 				return;
