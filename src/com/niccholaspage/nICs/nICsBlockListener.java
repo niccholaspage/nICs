@@ -39,11 +39,15 @@ public class nICsBlockListener extends BlockListener {
 				return;
 			}
 		}
-		String canplace = plugin.ics.get(text).canPlace(event.getLines()); 
-		if (canplace.equals("") == false){
+		String[] lines = event.getLines();
+		String canplace = plugin.ics.get(text).canPlace(lines); 
+		if (!(canplace == null)){
 			event.getPlayer().sendMessage(ChatColor.RED + canplace);
 			event.setCancelled(true);
 			return;
+		}
+		for (int i = 0; i< lines.length; i++){
+			event.setLine(i, lines[i]);
 		}
 		event.setLine(0, plugin.ics.get(text).getName());
 		event.getPlayer().sendMessage(ChatColor.GREEN + plugin.ics.get(text).getName() + " has been created!");

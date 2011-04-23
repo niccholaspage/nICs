@@ -24,6 +24,6 @@ public class MC1238 implements IC {
 	}
 	public String canPlace(String[] lines){
 		if (Material.getMaterial(lines[2].toUpperCase()) == null) return "The third line must be an item name/ID!";
-		return "";
+		return null;
 	}
 }

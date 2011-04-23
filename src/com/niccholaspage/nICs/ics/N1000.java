@@ -34,12 +34,13 @@ public class N1000 implements IC {
 	@Override
 	public String canPlace(String[] lines) {
 		Boolean pass = false;
+		lines[2] = lines[2].substring(0, 1).toUpperCase() + lines[2].substring(1);
 		for (int i = 0; i < CreatureType.values().length; i++){
 			if (!(CreatureType.fromName(lines[2]) == null)){
 				pass = true;
 			}
 		}
-		if (pass) return ""; else return "Line 3 must be a mob name!";
+		if (pass) return null; else return "Line 3 must be a mob name!";
 	}
 
 }
