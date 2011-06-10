@@ -32,10 +32,10 @@ public class nICs extends JavaPlugin {
 	public void onEnable() {
 		//Create the pluginmanage pm.
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.REDSTONE_CHANGE, this.blockListener, Event.Priority.Normal, this);
-	    pm.registerEvent(Event.Type.SIGN_CHANGE, this.blockListener, Event.Priority.Normal, this);
+		pm.registerEvent(Event.Type.REDSTONE_CHANGE, blockListener, Event.Priority.Normal, this);
+	    pm.registerEvent(Event.Type.SIGN_CHANGE, blockListener, Event.Priority.Normal, this);
        //Get the infomation from the yml file.
-        PluginDescriptionFile pdfFile = this.getDescription();
+        PluginDescriptionFile pdfFile = getDescription();
         //Add all the ICs
         setupICs();
         //Perma.
@@ -50,6 +50,7 @@ public class nICs extends JavaPlugin {
     	ics.put("MC1238", new MC1238());
     	ics.put("MC1239", new MC1239());
     	ics.put("N1000", new N1000());
+    	ics.put("N1001", new N1001());
     }
 	public int getSignDirection(Sign signBlock){
 		if(signBlock.getRawData() == 0x2){
@@ -63,7 +64,7 @@ public class nICs extends JavaPlugin {
     		return 4;//NORTH
     	}
     	else if(signBlock.getRawData() == 0x5){
-    		return 2;//SOUTH    	
+    		return 2;//SOUTH
     	}   
 		return -1;
 	}
