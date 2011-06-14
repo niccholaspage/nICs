@@ -51,6 +51,7 @@ public class nICs extends JavaPlugin {
     	ics.put("MC1239", new MC1239());
     	ics.put("N1000", new N1000());
     	ics.put("N1001", new N1001());
+    	ics.put("N1002", new N1002());
     }
 	public int getSignDirection(Sign signBlock){
 		if(signBlock.getRawData() == 0x2){
