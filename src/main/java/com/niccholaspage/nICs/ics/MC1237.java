@@ -5,6 +5,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
+import com.niccholaspage.nICs.IC;
 import com.niccholaspage.nICs.nICs;
 
 public class MC1237 implements IC {

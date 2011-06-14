@@ -6,6 +6,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
+import com.niccholaspage.nICs.IC;
 import com.niccholaspage.nICs.nICs;
 
 public class N1000 implements IC {
@@ -19,7 +20,7 @@ public class N1000 implements IC {
 		Location block = plugin.getBlockBehindOfSign(sign).getLocation();
 		block.setY(block.getY() + 1);
 		int times = 1;
-		if (plugin.isInt(sign.getLine(3))) times = Integer.parseInt(sign.getLine(3));
+		if (nICs.isInt(sign.getLine(3))) times = Integer.parseInt(sign.getLine(3));
 		for (int i = 0; i < times; i++){
 		world.spawnCreature(block, CreatureType.fromName(sign.getLine(2)));
 		}

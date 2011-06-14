@@ -1,8 +1,7 @@
-package com.niccholaspage.nICs.ics;
+package com.niccholaspage.nICs;
 
 import org.bukkit.event.block.BlockRedstoneEvent;
 
-import com.niccholaspage.nICs.nICs;
 
 public interface IC {
 	public abstract Boolean run(nICs plugin, BlockRedstoneEvent event);

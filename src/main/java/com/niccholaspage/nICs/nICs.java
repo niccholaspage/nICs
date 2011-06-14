@@ -114,7 +114,7 @@ public class nICs extends JavaPlugin {
 		}
 		return signBlock.getWorld().getBlockAt(loc);
 	}
-    public boolean isInt(String i){
+    public static boolean isInt(String i){
     	try {
     		Integer.parseInt(i);
     		return true;
