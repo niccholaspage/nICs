@@ -12,7 +12,7 @@ public class N1002 implements IC {
 		if (event.getNewCurrent() < 1) return null;
 		final Sign sign = (Sign)event.getBlock().getState();
 		final int times = Integer.parseInt(sign.getLine(2));
-		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+		plugin.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, new Runnable(){
 			public void run(){
 				for (int i = 0; i < times; i++){
 					plugin.setLever(sign, true);
