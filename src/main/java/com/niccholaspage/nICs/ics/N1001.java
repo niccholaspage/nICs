@@ -13,7 +13,7 @@ public class N1001 implements IC {
 		Boolean power = (event.getNewCurrent() > 0);
 		if (power){
 			Sign sign = (Sign)event.getBlock().getState();
-			event.getBlock().getWorld().setStorm(sign.getLine(2) == "on" ? true : false);
+			event.getBlock().getWorld().setStorm(sign.getLine(2).equalsIgnoreCase("on") ? true : false);
 		}
 		return null;
 	}
@@ -25,7 +25,7 @@ public class N1001 implements IC {
 
 	@Override
 	public String canPlace(String[] lines) {
-		if (!(lines[2].equalsIgnoreCase("on") || lines[2].equalsIgnoreCase("off"))){
+		if (lines[2].equalsIgnoreCase("on") || lines[2].equalsIgnoreCase("off")){
 			return null;
 		}else {
 			return "Line 3 must be 'on' or 'off.'";

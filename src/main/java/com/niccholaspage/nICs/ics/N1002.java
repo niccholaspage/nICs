@@ -17,7 +17,7 @@ public class N1002 implements IC {
 				for (int i = 0; i < times; i++){
 					plugin.setLever(sign, true);
 					try {
-						Thread.sleep(20);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
